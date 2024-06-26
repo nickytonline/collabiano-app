@@ -5,7 +5,9 @@ import { colors, typography } from "app/theme"
 import { Text } from "app/components/Text"
 import { Button } from "./Button"
 
-type MajorOctaveNote = "C4" | "D4" | "E4" | "F4" | "G4" | "A4" | "B4"
+export const MAJOR_OCTAVE_NOTES = ["C4", "D4", "E4", "F4", "G4", "A4", "B4"] as const
+
+export type MajorOctaveNote = (typeof MAJOR_OCTAVE_NOTES)[number]
 
 export interface WhitePianoKeyProps {
   note: MajorOctaveNote
@@ -24,13 +26,17 @@ export const WhitePianoKey = observer(function WhitePianoKey(props: WhitePianoKe
   const $styles = [style, $noteStyle]
 
   return (
-    <Button onPress={onPress}>
+    <Button onPress={onPress} style={$keyStyle}>
       <View style={$styles} aria-label={`plays the ${note} note`}>
         <Text style={$noteTextStyle}>{note}</Text>
       </View>
     </Button>
   )
 })
+
+const $keyStyle = {
+  width: 30,
+}
 
 const $noteStyle: TextStyle = {
   flex: 1,

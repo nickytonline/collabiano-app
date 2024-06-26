@@ -5,7 +5,8 @@ import { colors, typography } from "app/theme"
 import { Text } from "app/components/Text"
 import { Button } from "./Button"
 
-type MajorOctaveSharpNote = "C#4" | "D#4" | "F#4" | "G#4" | "A#4"
+export const MAJOR_OCTAVE_SHARP_NOTES = ["C#4", "D#4", "F#4", "G#4", "A#4"] as const
+type MajorOctaveSharpNote = (typeof MAJOR_OCTAVE_SHARP_NOTES)[number]
 
 export interface BlackPianoKeyProps {
   note: MajorOctaveSharpNote
@@ -16,25 +17,7 @@ export interface BlackPianoKeyProps {
   style?: StyleProp<ViewStyle>
 }
 
-type Value = any // typeof Object.values(colors.palette[number])
-
-// create a union type of all the value for the keys of ColorPalette
-type ColorPaletteKeys = keyof ColorPalette
-
-type ColorPaletteValue =
-  | "#000000"
-  | "#1A1A1A"
-  | "#333333"
-  | "#4D4D4D"
-  | "#666666"
-  | "#808080"
-  | "#999999"
-  | "#B3B3B3"
-  | "#CCCCCC"
-  | "#E6E6E6"
-  | "#F0F0F0"
-  | "#F9F9F9"
-  | "#FFFFFF"
+type ColorPaletteValue = (typeof colors.palette)[keyof typeof colors.palette]
 
 /**
  * Describe your component here

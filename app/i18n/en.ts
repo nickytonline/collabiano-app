@@ -41,6 +41,10 @@ const en = {
     tapToSignIn: "Tap to sign in!",
     hint: "Hint: you can use any email address and your favorite password :)",
   },
+  collabiano: {
+    title: "Collabiano",
+    tagLine: "Collaborate on a piano in real-time ",
+  },
   demoNavigator: {
     componentsTab: "Components",
     debugTab: "Debug",

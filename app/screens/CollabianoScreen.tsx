@@ -12,6 +12,7 @@ import {
   Text,
   WhitePianoKey,
 } from "app/components"
+import { Audio } from "expo-av"
 // import { useNavigation } from "@react-navigation/native"
 // import { useStores } from "app/models"
 
@@ -19,8 +20,13 @@ interface CollabianoScreenProps extends AppStackScreenProps<"Collabiano"> {}
 
 type Note = MajorOctaveNote | MajorOctaveSharpNote
 
-const onPlayNote = (note: Note) => {
+const onPlayNote = async (note: Note) => {
   console.log(`play ${note}`)
+  console.log("Loading Sound")
+  const { sound } = await Audio.Sound.createAsync(
+    require("../../assets/sounds/default-theme/a-sharp-4.mp3"),
+  )
+  await sound.playAsync()
 }
 
 export const CollabianoScreen: FC<CollabianoScreenProps> = observer(function CollabianoScreen() {

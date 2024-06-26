@@ -6,7 +6,7 @@ import { Text } from "app/components/Text"
 import { Button } from "./Button"
 
 export const MAJOR_OCTAVE_SHARP_NOTES = ["C#4", "D#4", "F#4", "G#4", "A#4"] as const
-type MajorOctaveSharpNote = (typeof MAJOR_OCTAVE_SHARP_NOTES)[number]
+export type MajorOctaveSharpNote = (typeof MAJOR_OCTAVE_SHARP_NOTES)[number]
 
 export interface BlackPianoKeyProps {
   note: MajorOctaveSharpNote
@@ -31,6 +31,7 @@ export const BlackPianoKey = observer(function BlackPianoKey(props: BlackPianoKe
     <Button
       style={{
         backgroundColor: bgColor,
+        width: 30,
       }}
       onPress={onPress}
       onPressIn={() => setBgColor(colors.palette.neutral700)}

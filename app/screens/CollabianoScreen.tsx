@@ -2,11 +2,26 @@ import React, { FC } from "react"
 import { observer } from "mobx-react-lite"
 import { View, ViewStyle } from "react-native"
 import { AppStackScreenProps } from "app/navigators"
-import { MAJOR_OCTAVE_NOTES, Screen, Text, WhitePianoKey } from "app/components"
+import {
+  BlackPianoKey,
+  MAJOR_OCTAVE_NOTES,
+  MAJOR_OCTAVE_SHARP_NOTES,
+  MajorOctaveNote,
+  MajorOctaveSharpNote,
+  Screen,
+  Text,
+  WhitePianoKey,
+} from "app/components"
 // import { useNavigation } from "@react-navigation/native"
 // import { useStores } from "app/models"
 
 interface CollabianoScreenProps extends AppStackScreenProps<"Collabiano"> {}
+
+type Note = MajorOctaveNote | MajorOctaveSharpNote
+
+const onPlayNote = (note: Note) => {
+  console.log(`play ${note}`)
+}
 
 export const CollabianoScreen: FC<CollabianoScreenProps> = observer(function CollabianoScreen() {
   // Pull in one of our MST stores
@@ -27,7 +42,49 @@ export const CollabianoScreen: FC<CollabianoScreenProps> = observer(function Col
           }}
         >
           {MAJOR_OCTAVE_NOTES.map((note) => (
-            <WhitePianoKey key={note} note={note} onPress={() => console.log(`play ${note}`)} />
+            <WhitePianoKey
+              key={note}
+              note={note}
+              onPress={(event) => {
+                onPlayNote(note)
+              }}
+            />
+          ))}
+        </View>
+        <View
+          style={{
+            position: "absolute",
+            top: 38,
+            left: 50,
+            flex: 1,
+            flexDirection: "row",
+            gap: 15,
+            justifyContent: "center",
+          }}
+        >
+          {MAJOR_OCTAVE_SHARP_NOTES.filter((n) => ["C#4", "D#4"].includes(n)).map((note) => (
+            <BlackPianoKey
+              key={note}
+              note={note}
+              onPress={(event) => {
+                onPlayNote(note)
+              }}
+            />
+          ))}
+        </View>
+        <View
+          style={{
+            position: "absolute",
+            top: 38,
+            left: 185,
+            flex: 1,
+            flexDirection: "row",
+            gap: 15,
+            justifyContent: "center",
+          }}
+        >
+          {MAJOR_OCTAVE_SHARP_NOTES.filter((n) => !["C#4", "D#4"].includes(n)).map((note) => (
+            <BlackPianoKey key={note} note={note} onPress={() => console.log(`play ${note}`)} />
           ))}
         </View>
       </View>

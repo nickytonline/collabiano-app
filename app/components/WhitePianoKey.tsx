@@ -35,7 +35,7 @@ export const WhitePianoKey = observer(function WhitePianoKey(props: WhitePianoKe
 })
 
 const $keyStyle = {
-  width: 30,
+  width: 40,
 }
 
 const $noteStyle: TextStyle = {

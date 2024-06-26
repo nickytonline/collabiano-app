@@ -1,7 +1,14 @@
 /* eslint-disable react/jsx-key */
 import React from "react"
 import { ImageStyle, TextStyle, View, ViewStyle } from "react-native"
-import { Icon, iconRegistry, IconTypes, Text } from "../../../components"
+import {
+  BlackPianoKey,
+  Icon,
+  iconRegistry,
+  IconTypes,
+  Text,
+  WhitePianoKey,
+} from "../../../components"
 import { colors, spacing } from "../../../theme"
 import { Demo } from "../DemoShowroomScreen"
 import { DemoUseCase } from "../DemoUseCase"
@@ -35,6 +42,12 @@ export const DemoIcon: Demo = {
   description:
     "A component to render a registered icon. It is wrapped in a <TouchableOpacity /> if `onPress` is provided, otherwise a <View />.",
   data: [
+    <DemoUseCase name="Black Piano Key" description="A black piano key" layout="row">
+      <BlackPianoKey note="F#4" onPress={() => {}} />
+    </DemoUseCase>,
+    <DemoUseCase name="White Piano Key" description="A white piano key" layout="row">
+      <WhitePianoKey note="C4" onPress={() => {}} />
+    </DemoUseCase>,
     <DemoUseCase
       name="Icons"
       description="List of icons registered inside the component."
